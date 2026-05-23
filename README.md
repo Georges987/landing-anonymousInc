@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AnonymousInc — Landing Page
 
-## Getting Started
+Landing page institutionnelle pour **AnonymousInc**, une entreprise de développement de services IT.
 
-First, run the development server:
+## ✨ Features
+
+- **Fond 3D interactif** — Champ de particules Three.js avec shader GLSL custom et parallax souris
+- **Smooth scrolling** — Scroll ultra-fluide via Lenis
+- **Animations Framer Motion** — Entrées au scroll, parallax, hover effects, floating cards
+- **Navbar intelligente** — Glass morphism au scroll, détection de section active, menu mobile animé
+- **6 sections** : Hero · Services · About · Stack · Testimonials · Contact
+- **Formulaire de contact** — Avec états loading et confirmation
+- **Design system** — CSS variables, glassmorphism, glow effects, gradient text
+- **Responsive** — Mobile-first, adapté tablette et desktop
+
+## 🛠️ Stack
+
+| Catégorie | Technologie |
+|---|---|
+| Framework | [Next.js 16](https://nextjs.org/) (App Router) |
+| Langage | TypeScript |
+| Styling | Tailwind CSS v4 |
+| 3D | [Three.js](https://threejs.org/) |
+| Animations | [Framer Motion](https://www.framer.com/motion/) |
+| Smooth scroll | [Lenis](https://lenis.darkroom.engineering/) |
+| Fonts | Inter (Google Fonts) |
+| Package manager | pnpm |
+
+## 🚀 Démarrage rapide
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# Installer les dépendances
+pnpm install
+
+# Lancer le serveur de développement
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrir [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📦 Build de production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm build
+pnpm start
+```
 
-## Learn More
+## 📁 Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/
+├── components/
+│   ├── ThreeBackground.tsx   # Scène Three.js (particules + grid + mouse parallax)
+│   ├── Navbar.tsx            # Navigation fixe avec scroll detection
+│   ├── HeroSection.tsx       # Hero avec parallax scroll et stats
+│   ├── ServicesSection.tsx   # Grille des 6 services avec hover glow
+│   ├── AboutSection.tsx      # Histoire, timeline et tech stack
+│   ├── ContactSection.tsx    # Témoignages + formulaire
+│   ├── Footer.tsx            # CTA band + liens + socials
+│   └── SmoothScrollProvider.tsx  # Wrapper Lenis
+├── globals.css               # Design tokens, utilitaires glass/glow/gradient
+├── layout.tsx                # Root layout + métadonnées SEO
+└── page.tsx                  # Assemblage des sections
+public/
+└── hero-bg.png               # Image de fond hero
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 Design System
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Les variables CSS sont définies dans `globals.css` :
 
-## Deploy on Vercel
+```css
+--color-bg:       #020510   /* Fond principal */
+--color-primary:  #00d4ff   /* Cyan (accent principal) */
+--color-secondary: #7c3aed  /* Violet */
+--color-accent:   #06b6d4   /* Cyan clair */
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Classes utilitaires disponibles : `.glass`, `.glow-text`, `.glow-border`, `.gradient-text`, `.gradient-primary`, `.section-padding`

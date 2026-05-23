@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, type Variants } from "framer-motion";
 import dynamic from "next/dynamic";
 
 const ThreeBackground = dynamic(() => import("./ThreeBackground"), { ssr: false });
@@ -12,6 +12,8 @@ const floatingCards = [
   { icon: "🛡️", label: "Security", delay: 0.4, x: -80, y: 40 },
   { icon: "📊", label: "Analytics", delay: 0.6, x: 70, y: 50 },
 ];
+
+const EASE = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -28,7 +30,7 @@ export default function HeroSection() {
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.6], [1, 0.92]);
 
-  const textVariants = {
+  const textVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i: number) => ({
       opacity: 1,
@@ -36,7 +38,7 @@ export default function HeroSection() {
       transition: {
         delay: i * 0.15,
         duration: 0.8,
-        ease: [0.16, 1, 0.3, 1],
+        ease: EASE,
       },
     }),
   };
